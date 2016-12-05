@@ -1,4 +1,4 @@
-open System.Collections
+open Factoring
 // I solved this using the sieve of Eratosthenes.
 //
 // It probably can be solved by direct search by dividing the number
@@ -7,6 +7,7 @@ open System.Collections
 // functional language. It also required me getting a data type from
 // the library which was good to learn how to do
 
+// I wrote the PrimeSieve in the factoring module
 
 // let target = 13195L                  //Example number for the problem
 let target = 600851475143L              //The number for the challenge
@@ -20,17 +21,6 @@ let int_sqrt x = x |> float |> sqrt |> int
 
 let sqrtt = int_sqrt target
 
-let PrimeSeive max =
-    // Mark all numbers up to the max as candidates
-    let mutable ba = new BitArray(max+1 , true);
-    // For all numbers if its a prime mark all its multipules off the list
-    for i in 2..max do
-        if ba.Get(i) then
-            // start at twice the prime and iterate by it to makr multipules 
-            for m in i*2..i..max do
-                ba.Set(m, false)
-                
-    [ for i in 2..max do if ba.Get(i) then yield i ]
 
 let allprimes = target |> int_sqrt |> PrimeSeive 
 
