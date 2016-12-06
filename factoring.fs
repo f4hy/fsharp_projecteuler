@@ -8,7 +8,7 @@ let PrimeSeive max =
     // For all numbers if its a prime mark all its multipules off the list
     for i in 2..max do
         if ba.Get(i) then
-            // start at twice the prime and iterate by it to makr multipules 
+            // start at twice the prime and iterate by it to make multipules 
             for m in i*2..i..max do
                 ba.Set(m, false)
                 
