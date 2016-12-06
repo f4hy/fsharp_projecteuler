@@ -1,3 +1,4 @@
+#load "factoring.fs"
 open Factoring
 // I solved this using the sieve of Eratosthenes.
 //
@@ -17,12 +18,12 @@ let rec plist lst =
         | head :: tail -> printf "%d " head; plist tail
         | [] -> printfn "\n"
 
-let int_sqrt x = x |> float |> sqrt |> int
+let isqrt x = x |> float |> sqrt |> int
 
-let sqrtt = int_sqrt target
+let sqrtt = isqrt target
 
 
-let allprimes = target |> int_sqrt |> PrimeSeive 
+let allprimes = target |> isqrt |> PrimeSeive 
 
 // plist allprimes
 

@@ -9,6 +9,8 @@
 // I believe this is just a LCM problem. find the LCM of all the numbers from 1 to 20
 
 // LCM is simply taking the prime factors from both but not twice.
+#load "factoring.fs"
+#load "printing.fs"
 
 open Factoring
 
