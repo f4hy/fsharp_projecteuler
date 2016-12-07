@@ -19,7 +19,7 @@ open Printing
 
 // The seive requires a starting large value, so lets just increase it until we have enough
 
-let smallprimes = PrimeSeive 200
+let smallprimes = PrimeSeive 200 |> Seq.toList
 
 // Check the example
 printfn "6th prime is %d" (smallprimes.Item(5))
@@ -36,7 +36,7 @@ printfn "6th prime is %d" (smallprimes.Item(5))
 let getNthPrime n =
     //Increase until we have enough
     let rec genNprimes (i:int) : (int list) =
-        let ps = PrimeSeive i
+        let ps = PrimeSeive i |> Seq.toList
         printfn "Finding primes up to %d" i
         if ps.Length > n then
             ps
@@ -48,4 +48,3 @@ let getNthPrime n =
 let answer = getNthPrime 10000
 
 printfn "Answer %d" answer
-

@@ -12,7 +12,7 @@
 #load "factoring.fs"
 open Factoring
 
-let smallprimes = PrimeSeive 200
+let smallprimes = PrimeSeive 200 |> Seq.toList
 
 exception MyException of string
 

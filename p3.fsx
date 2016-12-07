@@ -22,10 +22,10 @@ let allprimes = target |> isqrt |> PrimeSeive
 
 let Isfactor i = target % (int64 i) = 0L
 
-let primefactors = allprimes |> List.filter Isfactor
+let primefactors = allprimes |> Seq.filter Isfactor
 
-lplist "Prime Factors" primefactors
+printfn "Prime Factors: %A" primefactors
 
-let answer = List.max primefactors
+let answer = Seq.max primefactors
 
 printfn "Answer: %d " answer
