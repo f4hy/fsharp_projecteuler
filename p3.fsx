@@ -1,5 +1,7 @@
 #load "factoring.fs"
+#load "printing.fs"
 open Factoring
+open Printing
 // I solved this using the sieve of Eratosthenes.
 //
 // It probably can be solved by direct search by dividing the number
@@ -13,28 +15,17 @@ open Factoring
 // let target = 13195L                  //Example number for the problem
 let target = 600851475143L              //The number for the challenge
 
-let rec plist lst =
-    match lst with
-        | head :: tail -> printf "%d " head; plist tail
-        | [] -> printfn "\n"
 
 let isqrt x = x |> float |> sqrt |> int
 
-let sqrtt = isqrt target
-
-
-let allprimes = target |> isqrt |> PrimeSeive 
-
-// plist allprimes
+let allprimes = target |> isqrt |> PrimeSeive
 
 let Isfactor i = target % (int64 i) = 0L
 
 let primefactors = allprimes |> List.filter Isfactor
 
-printfn "Prime Factors:"
-plist primefactors
+lplist "Prime Factors" primefactors
 
 let answer = List.max primefactors
 
-printfn "Answer: %d \n" answer
-
+printfn "Answer: %d " answer
