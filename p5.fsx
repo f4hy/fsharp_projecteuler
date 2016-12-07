@@ -10,22 +10,17 @@
 
 // LCM is simply taking the prime factors from both but not twice.
 #load "factoring.fs"
-#load "printing.fs"
-
 open Factoring
 
-open Printing
+let smallprimes = PrimeSeive 200
 
-let small_primes = PrimeSeive 200
-
-
-exception MyError of string
+exception MyException of string
 
 
 let rec factors (b:int) (primes:int list) (lst:int list) =
-    // base case is we found all or no more primes 
+    // base case is we found all or no more primes
     if primes.IsEmpty then
-        raise (MyError("Ran out of primes before done"))
+        raise (MyException("Ran out of primes before done"))
     elif b = 1 then
         lst
     elif b % (primes.Head) = 0 then
@@ -34,12 +29,10 @@ let rec factors (b:int) (primes:int list) (lst:int list) =
         factors b (primes.Tail) lst
 
 
-let prime_factors a = factors a small_primes []
-    
+let primefactors a = factors a smallprimes []
 
-
-let common_factors (x:int) (y:int) =
-    let rec cfactors (A:int list) (B:int list) (acc:int list) = 
+let commonfactors (x:int) (y:int) =
+    let rec cfactors (A:int list) (B:int list) (acc:int list) =
             match A, B with
             | [], [] -> acc
             | [], _ -> (B @ acc)
@@ -48,9 +41,9 @@ let common_factors (x:int) (y:int) =
             | ah :: at, bh :: bt when ah < bh -> cfactors A bt (bh::acc)
             | ah :: at, bh :: bt when ah = bh -> cfactors at bt (ah::acc)
             | _ -> acc
-    cfactors (prime_factors x) (prime_factors y) []
+    cfactors (primefactors x) (primefactors y) []
 
-let LCM x y = List.fold (fun acc elm -> acc * elm) 1 (common_factors x y )
+let LCM x y = List.fold ( * ) 1 (commonfactors x y )
 
 let answer = List.fold LCM 1 [2..20]
 
