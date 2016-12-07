@@ -5,6 +5,8 @@ let rec plist lst =
         | head :: tail -> printf "%d " head; plist tail
         | [] -> printfn "\n"
 
+let lplist label lst = printf "%s:" label; plist lst
+
 let printn n lst =
     List.toSeq lst |> Seq.truncate n |> Seq.iter (printf "%A ") ; printfn ""
 
@@ -16,4 +18,4 @@ let lprintn label n lst =
 let lprint10 label lst =
     lprintn label 10 lst
 
-let lpd label d = printf "%s: %d" label d 
+let lpd label d = printf "%s: %d" label d
