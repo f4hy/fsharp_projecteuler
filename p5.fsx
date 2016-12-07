@@ -47,5 +47,20 @@ let LCM x y = List.fold ( * ) 1 (commonfactors x y )
 
 let answer = List.fold LCM 1 [2..20]
 
-printfn "Answer: %d" answer
+printfn "Answer method 1: %d" answer
 
+// LCM can be computed using GCD if we don't want to use factoring.
+
+let rec gcd x y =
+    match y with
+        | 0 -> x
+        | _ -> (gcd y (x % y))
+
+let LCMnew a b =
+    match b with
+        | 0 -> 0
+        | _ -> (a*b)/ (gcd a b )
+
+let answer2 = List.fold LCMnew 1 [2..20]
+
+printfn "Answer method 2: %d" answer
